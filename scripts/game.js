@@ -8,6 +8,7 @@ let arrayOfLetters = [];
 let wrongLetter = 0;
 let totalAttempts = 6;
 let randomWord = words[random];
+let rightLetter = 0;
 
 for (letter of randomWord) {
   arrayOfLetters.push(letter);
@@ -30,6 +31,13 @@ function compareLetters(clickedLetter) {
     [...randomWord].forEach((letter, index) => {
       if (letter === clickedLetter) {
         answer.querySelectorAll("span")[index].innerText = letter;
+        rightLetter++;
+        console.log(rightLetter);
+      }
+      // end of game
+      if (rightLetter === randomWord.length) {
+        alert(`congratulations the word is : ${randomWord}`);
+        window.location.reload();
       }
     });
   } else {
@@ -38,7 +46,7 @@ function compareLetters(clickedLetter) {
   }
   // reload the game when using all the attempts
   if (wrongLetter === totalAttempts) {
-    alert("Game Over!");
+    alert("Game Over! Try Again");
     window.location.reload();
   }
 }
